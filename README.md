@@ -76,7 +76,7 @@
   </div>
   
   <!-- زر الذكاء الاصطناعي العلوي المحدث -->
-  <a href="https://mohamedmadoui5195.github.io/Gemalot/" class="ai-top-btn" title="Ask Gemalot">
+  <a href="https://Alislamiah.github.io/Gemalot/" class="ai-top-btn" title="Ask Gemalot">
     <span class="top-txt">✨ </span>
     <span class="sub-txt">Ask Gemalot</span>
   </a>
@@ -122,7 +122,7 @@
   <button class="active" onclick="showList()">📥 الإستقبال</button>
   <button onclick="newChat()">📤 الإرسال</button>
   <button onclick="location.href='Settings.html'">⚙ الإعدادات</button>
-  <a href="https://mohamedmadoui5195.github.io/Gemalot/" class="ai-item">✨ Gemalot AI</a>
+  <a href="https://Alislamiah.github.io/Gemalot/" class="ai-item">✨ Gemalot AI</a>
 </nav>
 
 </div><div id="overlay"></div><div id="toastHost"></div>
