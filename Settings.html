@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head><style>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><style>
 @font-face {
   font-family: "Optimistic";
   font-style: normal;
@@ -19,20 +21,34 @@
 :where(code, pre, kbd, samp) {
   font-family: "Optimistic Mono", ui-monospace, monospace;
 }
-</style><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#071426"><title>الإعدادات | Eisen SMS</title><link rel="icon" href="icon.png"><style>
+</style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071426"><title>الإعدادات | Eisen SMS</title>
+<link rel="icon" href="icon.png"><style>
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#112b4a,#050b15 60%);color:#f1f6ff;font-family:system-ui,sans-serif;min-height:100vh}.wrap{max-width:760px;margin:auto;padding:18px}.top{display:flex;align-items:center;gap:13px;padding:15px 0 22px}.logo{width:49px;height:49px;border-radius:15px}.top h1{font-size:21px;margin:0}.top p{font-size:12px;color:#9db2cc;margin:4px 0}.back{margin-right:auto;background:#12263d;color:white;border:1px solid #29415b;padding:11px 14px;border-radius:12px;text-decoration:none}.section{background:#0b192be8;border:1px solid #25415f;border-radius:21px;padding:20px;margin:13px 0}.section h2{font-size:16px;margin:0 0 16px}.row{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:14px 0;border-bottom:1px solid #20364e}.row:last-child{border:0}.label strong{display:block;font-size:14px}.label small{display:block;color:#92a8c3;font-size:12px;line-height:1.7;margin-top:4px}.control,select{background:#10253c;color:white;border:1px solid #2b4765;padding:10px 12px;border-radius:11px;max-width:52%}.btn{width:100%;padding:13px;border:0;border-radius:13px;background:linear-gradient(135deg,#3186ff,#2059d1);color:white;font-weight:700;margin-top:10px;cursor:pointer}.btn.danger{background:#381b2b;border:1px solid #72334a;color:#ff9eae}.small{font-size:12px;color:#8fa6c2;line-height:1.8}.status{color:#7de5bd}.toast{margin-top:12px;color:#7de5bd;font-size:13px}
 </style></head><body><main class="wrap"><header class="top"><img class="logo" src="icon.png" alt=""><div><h1>الإعدادات</h1><p>Alislamiah Eisen SMS Messages</p></div><a class="back" href="index.html">الرئيسية ←</a></header>
-<section class="section"><h2>الحساب</h2><div class="row"><div class="label"><strong>رقم الهاتف</strong><small>حسابك المرتبط بتسجيل الدخول</small></div><span class="control" id="phone">—</span></div><div class="row"><div class="label"><strong>حالة الاتصال</strong><small>حالة الاتصال بخدمات الرسائل</small></div><span class="status" id="status">—</span></div><button class="btn danger" id="logout">تسجيل الخروج</button></section>
+<section class="section"><h2>الحساب</h2><div class="row"><div class="label"><strong>رقم الهاتف</strong><small>حسابك المرتبط بتسجيل الدخول</small></div><span class="control" id="phone">جارٍ التحميل…</span></div><div class="row"><div class="label"><strong>حالة الاتصال</strong><small>حالة الاتصال بخدمات الرسائل</small></div><span class="status" id="status">جارٍ التحقق…</span></div><button class="btn danger" id="logout">تسجيل الخروج</button></section>
 <section class="section"><h2>التفضيلات</h2><div class="row"><div class="label"><strong>لغة الواجهة</strong><small>تُحفظ على هذا الجهاز</small></div><select id="language" class="control"><option value="ar">العربية</option><option value="fr">Français</option><option value="en">English</option></select></div><div class="row"><div class="label"><strong>المظهر</strong><small>واجهة داكنة مصممة لتطبيق Eisen</small></div><span class="control">داكن 🌙</span></div><div class="row"><div class="label"><strong>المسودات المحلية</strong><small>حذف المسودات المحفوظة على هذا الجهاز</small></div><button class="control" id="clearDrafts">مسح</button></div><p class="small">تُخزّن التفضيلات محلياً في متصفحك.</p><div id="message" class="toast"></div></section>
-<section class="section"><h2>حول التطبيق</h2><div class="row"><div class="label"><strong>Alislamiah Eisen SMS Messages</strong><small>مراسلة بين مستخدمي التطبيق عبر الإنترنت.</small></div><span class="control">v1.0</span></div><p class="small">الرسائل بين الحسابات تستخدم Firebase وFirestore.</p></section></main>
+<section class="section"><h2>حول التطبيق</h2><div class="row"><div class="label"><strong>Alislamiah Eisen SMS Messages</strong><small>مراسلة بين مستخدمي التطبيق عبر الإنترنت.</small></div><span class="control">v1.0</span></div><p class="small">الرسائل بين الحسابات تستخدم Firebase وFirestore - مربوط بنفس مشروع eisen-sms</p></section></main>
 <script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
-import {getAuth,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
-const cfg={apiKey:"AIzaSyCNkJaxbQHkv9gntmt0tWdiVPMmjmWg-4g",authDomain:"eisen-mail.firebaseapp.com",projectId:"eisen-mail",storageBucket:"eisen-mail.firebasestorage.app",messagingSenderId:"857237566012",appId:"1:857237566012:web:6cc98d71ae010cfb2ac939",measurementId:"G-RFKFWM4B1Y"};
-const app=initializeApp(cfg),auth=getAuth(app),$=id=>document.getElementById(id);
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {getAuth,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import {getFirestore,doc,setDoc,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+// نفس مفتاح الصفحة الرئيسية تماما - eisen-sms
+const firebaseConfig = {
+  apiKey: "AIzaSyDFDCcFgBST43TU1RyfZ3Epvoc2JNxrmoI",
+  authDomain: "eisen-sms.firebaseapp.com",
+  projectId: "eisen-sms",
+  storageBucket: "eisen-sms.firebasestorage.app",
+  messagingSenderId: "934543543234",
+  appId: "1:934543543234:web:3b8b002767769731f2645b",
+  measurementId: "G-71J4KLJ8N5"
+};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),$=id=>document.getElementById(id);
 $("language").value=localStorage.getItem("app_lang")||"ar";
-$("language").onchange=()=>{localStorage.setItem("app_lang",$("language").value);$("message").textContent="تم حفظ اللغة."};
-onAuthStateChanged(auth, u=>{
+$("language").onchange=()=>{localStorage.setItem("app_lang",$("language").value);$("message").textContent="تم حفظ اللغة على هذا الجهاز."};
+
+onAuthStateChanged(auth, async u=>{
   if(!u){
     $("phone").textContent="—";
     $("status").textContent="غير مسجل";
@@ -45,7 +61,8 @@ onAuthStateChanged(auth, u=>{
   $("status").textContent="متصل";
   $("status").style.color="#7de5bd";
   $("logout").textContent="تسجيل الخروج";
-  $("logout").onclick=async()=>{try{await signOut(auth);location.reload()}catch(e){$("message").textContent=e.message}};
+  $("logout").onclick=async()=>{try{await signOut(auth);location.href="signin.html"}catch(e){$("message").textContent=e.message}};
+  try{await setDoc(doc(db,"users",u.uid),{uid:u.uid,phoneNumber:u.phoneNumber,displayName:u.displayName||u.phoneNumber,updatedAt:serverTimestamp()},{merge:true});}catch{}
 });
-$("clearDrafts").onclick=()=>{if(confirm("هل تريد حذف المسودات المحلية؟")){localStorage.removeItem("eisen_sms_drafts");$("message").textContent="تم مسح المسودات المحلية."}};
+$("clearDrafts").onclick=()=>{if(confirm("هل تريد حذف المسودات المحلية؟")){localStorage.removeItem("eisen_sms_cache");localStorage.removeItem("eisen_sms_drafts");$("message").textContent="تم مسح المسودات المحلية."}};
 </script><script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body></html>
